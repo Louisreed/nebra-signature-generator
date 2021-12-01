@@ -17,7 +17,7 @@
 
 </head>
 
-<body>
+<body class="bg-light">
 
   <div class="container">
     <div class="row">
@@ -26,19 +26,20 @@
           <h1 class="display-4">Nebra Signature Generator</h1>
           <p class="lead">This is a simple email signature generator for Nebra employees. Make sure your details are up to date in Google Sheets and it will automatically generate here!</p>
           <hr class="my-4">
-          <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
           <p class="lead">
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            <a id="generate" class="btn btn-primary btn-lg" href="#" role="button">Generate!</a>
           </p>
         </div>
       </div>
     </div>
+  </div>
+  <div class="container">
     <div class="row">
-      <div class="col-md-12 bg-light">
-        <ul id="dataList"></ul>
-        <div class="templates">
-          <div id="listItem">
+      <div class="col-md-12">
+        <ul id="signatureList"></ul>
 
+        <div class="templates" style="display: none;">
+          <div id="signatureItem">
             <style>
               html,
               body {

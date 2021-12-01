@@ -1,40 +1,53 @@
 $(document).ready(function () {
 
-    $.ajax({
-        url: "signature-data.csv",
-        async: false,
-        success: function (csvd) {
-            var items = $.csv.toObjects(csvd);
-            var jsonobject = JSON.stringify(items);
-            var dataObject = JSON.parse(jsonobject);
-            var listItemString = $('#listItem').html();
+    $("#generate").click(function () {
 
-            console.log(jsonobject);
+        // Render the email signature templates from CSV file
+        $.ajax({
+            url: "signature-data.csv",
+            async: false,
+            success: function (csvd) {
+                var items = $.csv.toObjects(csvd);
+                var jsonobject = JSON.stringify(items);
+                var dataObject = JSON.parse(jsonobject);
+                var signatureItemString = $('#signatureItem').html();
 
-            dataObject.forEach(buildNewList);
+                console.log(jsonobject);
+                console.log("Email signature generation complete");
 
-            function buildNewList(item, index) {
-                var listItem = $('<li>' + listItemString + '</li>');
+                // Build template variables
+                dataObject.forEach(buildNewList);
 
-                var listItemName = $('.name', listItem);
-                listItemName.html(item.Name);
-                console.log(name);
+                function buildNewList(item, index) {
+                    var signatureItem = $('<li class="bg-white my-5">' + signatureItemString + '</li>');
 
-                var listItemPosition = $('.position', listItem);
-                listItemPosition.html(item.Position);
+                    var signatureItemName = $('.name', signatureItem);
+                    signatureItemName.html(item.Name);
+                    console.log(name);
 
-                var listItemEmail = $('.email', listItem);
-                listItemEmail.html(item.Email);
+                    var signatureItemPosition = $('.position', signatureItem);
+                    signatureItemPosition.html(item.Position);
 
-                var listItemPhone = $('.phone', listItem);
-                listItemPhone.html(item.Phone);
+                    var signatureItemEmail = $('.email', signatureItem);
+                    signatureItemEmail.html(item.Email);
 
-                $('#dataList').append(listItem);
+                    var signatureItemPhone = $('.phone', signatureItem);
+                    signatureItemPhone.html(item.Phone);
+
+                    // Append data to signature item
+                    $('#signatureList').append(signatureItem);
+
+                    // Update button to success
+                    $("#generate").removeClass('btn-primary').addClass('btn-success').html('Email Signatures Generated');
+                }
+            },
+            dataType: "text",
+            complete: function () {},
+            error: function (thrownError) {
+                console.log(thrownError);
+                $("#generate").removeClass('btn-primary').addClass('btn-danger').html('Error: Signature data is missing!');
             }
-        },
-        dataType: "text",
-        complete: function () {
-            // call a function on complete 
-        }
+        });
     });
+
 });
