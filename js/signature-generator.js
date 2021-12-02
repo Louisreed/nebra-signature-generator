@@ -1,10 +1,14 @@
 $(document).ready(function () {
 
+    // Generate Button
     $("#generate").click(function () {
+
+        // Google Sheets URL
+        url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTax-As-VlOK5SqpPCMU6w0-LzUn9i595Cl2f1QykJ6EM2OUMxAVAaaJ2Il8cuOFkGwfznff35Qvb-r/pub?output=csv';
 
         // Render the email signature templates from CSV file
         $.ajax({
-            url: "signature-data.csv",
+            url: url,
             async: false,
             success: function (csvd) {
                 var items = $.csv.toObjects(csvd);
@@ -21,9 +25,9 @@ $(document).ready(function () {
                 function buildNewList(item, index) {
                     var signatureItem = $('<li class="bg-white my-5">' + signatureItemString + '</li>');
 
+                    // Contact Details
                     var signatureItemName = $('.name', signatureItem);
                     signatureItemName.html(item.Name);
-                    console.log(name);
 
                     var signatureItemPosition = $('.position', signatureItem);
                     signatureItemPosition.html(item.Position);
@@ -34,20 +38,48 @@ $(document).ready(function () {
                     var signatureItemPhone = $('.phone', signatureItem);
                     signatureItemPhone.html(item.Phone);
 
+                    // Social Links
+                    if (item.Facebook) {
+                        var signatureSocialFacebook = $('.facebook', signatureItem);
+                        signatureSocialFacebook.attr("href", "https://www.facebook.com/" + item.Facebook);
+                        signatureSocialFacebook.removeClass("d-none").addClass("d-inline-block");
+                    };
+                    if (item.Twitter) {
+                        var signatureSocialTwitter = $('.twitter', signatureItem);
+                        signatureSocialTwitter.attr("href", "https://www.twitter.com/" + item.Twitter);
+                        signatureSocialTwitter.removeClass("d-none").addClass("d-inline-block");
+                    }
+                    if (item.LinkedIn) {
+                        var signatureSocialLinkedIn = $('.linkedin', signatureItem);
+                        signatureSocialLinkedIn.attr("href", "http://www.linkedin.com/in/" + item.LinkedIn);
+                        signatureSocialLinkedIn.removeClass("d-none").addClass("d-inline-block");
+                    }
+
+                    var signatureSocialEmail = $('.socialEmail', signatureItem);
+                    signatureSocialEmail.attr("href", "mailto:" + item.Email);
+
                     // Append data to signature item
                     $('#signatureList').append(signatureItem);
 
-                    // Update button to success
-                    $("#generate").removeClass('btn-primary').addClass('btn-success').html('Email Signatures Generated');
+                    // Update button to warning and detach signature list
+                    $("#generate").removeClass('btn-primary').addClass('btn-success').html('Success!');
                 }
             },
             dataType: "text",
             complete: function () {},
             error: function (thrownError) {
                 console.log(thrownError);
+
+                // Update button to error
                 $("#generate").removeClass('btn-primary').addClass('btn-danger').html('Error: Signature data is missing!');
             }
         });
+    });
+
+    // Reset Button
+    $("#reset").click(function () {
+        $('#signatureList li').detach();
+        $("#generate").removeClass('btn-danger').addClass('btn-primary').html('Generate');
     });
 
 });
