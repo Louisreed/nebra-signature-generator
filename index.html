@@ -7,6 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="https://cdn.shopify.com/s/files/1/0071/2281/3001/files/Nebra-Icon-Blue_32x32.png?v=1610776627" type="image/png">
 
+  <!-- Font Awesome-->
+  <script src="https://kit.fontawesome.com/255f5a5a74.js" crossorigin="anonymous"></script>
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -58,9 +61,9 @@
           <p class="small">Copy and paste your email signature into your email app/client or alternatively, inspect
             and copy the entire table element from the HTML code.</p>
           <hr class="my-4">
-          <p class="lead">
-            <a id="generate" class="btn btn-primary btn-lg" href="#" role="button">Generate</a>
-            <a id="reset" class="btn btn-secondary btn-lg" href="#" role="button">Reset</a>
+          <p class="lead d-flex justify-content-between">
+            <a id="generate" class="btn btn-primary btn-lg" href="#" role="button"><i class="fas fa-cube"></i> Generate</a>
+            <a id="reset" class="btn btn-secondary btn-lg" href="#" role="button"><i class="fas fa-undo"></i> Reset</a>
           </p>
         </div>
       </div>
@@ -78,7 +81,6 @@
               body {
                 margin: 0;
                 padding: 0;
-                font-family: 'Roboto', sans-serif;
               }
 
               ul {

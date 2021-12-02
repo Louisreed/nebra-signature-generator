@@ -1,7 +1,13 @@
 $(document).ready(function () {
 
+    // Initialise reset button
+    $("#reset").hide();
+
     // Generate Button
     $("#generate").click(function () {
+
+        // Show reset button
+        $("#reset").show();
 
         // Google Sheets URL
         url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTax-As-VlOK5SqpPCMU6w0-LzUn9i595Cl2f1QykJ6EM2OUMxAVAaaJ2Il8cuOFkGwfznff35Qvb-r/pub?output=csv';
@@ -62,7 +68,7 @@ $(document).ready(function () {
                     $('#signatureList').append(signatureItem);
 
                     // Update button to warning and detach signature list
-                    $("#generate").removeClass('btn-primary').addClass('btn-success').html('Success!');
+                    $("#generate").removeClass('btn-primary').addClass('btn-success disabled').html('<i class="fas fa-check-circle"></i> Success!');
                 }
             },
             dataType: "text",
@@ -71,7 +77,7 @@ $(document).ready(function () {
                 console.log(thrownError);
 
                 // Update button to error
-                $("#generate").removeClass('btn-primary').addClass('btn-danger').html('Error: Signature data is missing!');
+                $("#generate").removeClass('btn-primary').addClass('btn-danger').html('<i class="fas fa-times-circle"></i> Error: Signature data is missing!');
             }
         });
     });
@@ -79,7 +85,7 @@ $(document).ready(function () {
     // Reset Button
     $("#reset").click(function () {
         $('#signatureList li').detach();
-        $("#generate").removeClass('btn-danger').addClass('btn-primary').html('Generate');
+        $("#generate").removeClass('btn-success btn-danger disabled').addClass('btn-primary').html('<i class="fas fa-cube"></i> Generate');
     });
 
 });
