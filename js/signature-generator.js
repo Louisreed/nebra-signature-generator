@@ -65,7 +65,8 @@ $(document).ready(function () {
                     signatureSocialEmail.attr("href", "mailto:" + item.Email);
 
                     // Append data to signature item
-                    $('#signatureList').append(signatureItem);
+                    $('#signatureList').append(signatureItem).addClass("d-none");
+                    $('#signatureList').slideDown().removeClass("d-none");
 
                     // Update button to warning and detach signature list
                     $("#generate").removeClass('btn-primary').addClass('btn-success disabled').html('<i class="fas fa-check-circle"></i> Success!');
@@ -84,8 +85,14 @@ $(document).ready(function () {
 
     // Reset Button
     $("#reset").click(function () {
-        $('#signatureList li').detach();
+        $('#signatureList li').slideUp();
+            setTimeout(function() { 
+                $('#signatureList li').detach()
+            }, 500);
         $("#generate").removeClass('btn-success btn-danger disabled').addClass('btn-primary').html('<i class="fas fa-cube"></i> Generate');
+        
+        // Hide reset button
+        $("#reset").hide();
     });
 
 });
