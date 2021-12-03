@@ -48,17 +48,17 @@ $(document).ready(function () {
                     if (item.Facebook) {
                         var signatureSocialFacebook = $('.facebook', signatureItem);
                         signatureSocialFacebook.attr("href", "https://www.facebook.com/" + item.Facebook);
-                        signatureSocialFacebook.removeClass("d-none").addClass("d-inline-block");
+                        signatureSocialFacebook.removeClass("d-none");
                     };
                     if (item.Twitter) {
                         var signatureSocialTwitter = $('.twitter', signatureItem);
                         signatureSocialTwitter.attr("href", "https://www.twitter.com/" + item.Twitter);
-                        signatureSocialTwitter.removeClass("d-none").addClass("d-inline-block");
+                        signatureSocialTwitter.removeClass("d-none");
                     }
                     if (item.LinkedIn) {
                         var signatureSocialLinkedIn = $('.linkedin', signatureItem);
                         signatureSocialLinkedIn.attr("href", "http://www.linkedin.com/in/" + item.LinkedIn);
-                        signatureSocialLinkedIn.removeClass("d-none").addClass("d-inline-block");
+                        signatureSocialLinkedIn.removeClass("d-none");
                     }
 
                     var signatureSocialEmail = $('.socialEmail', signatureItem);
