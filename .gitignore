@@ -1,5 +1,6 @@
 /node_modules/
 /.vscode/
 .DS_Store
+.gitignore
 signature-data.csv
 signature-data.json

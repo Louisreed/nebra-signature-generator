@@ -40,6 +40,7 @@ $(document).ready(function () {
 
                     if (item.Email) {
                         var signatureItemEmail = $('.email', signatureItem);
+                        signatureItemEmail.attr("href", "mailto:" + item.Email);
                         signatureItemEmail.html(item.Email);
                         $("<span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>").insertAfter(signatureItemEmail);
                     }
