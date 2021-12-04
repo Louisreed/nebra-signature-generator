@@ -38,35 +38,43 @@ $(document).ready(function () {
                     var signatureItemPosition = $('.position', signatureItem);
                     signatureItemPosition.html(item.Position);
 
-                    var signatureItemEmail = $('.email', signatureItem);
-                    signatureItemEmail.html(item.Email);
+                    if (item.Email) {
+                        var signatureItemEmail = $('.email', signatureItem);
+                        signatureItemEmail.html(item.Email);
+                        $("<span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>").insertAfter(signatureItemEmail);
+                    }
 
-                    var signatureItemPhone = $('.phone', signatureItem);
-                    signatureItemPhone.html(item.Phone);
+                    if (item.Phone) {
+                        var signatureItemPhone = $('.phone', signatureItem);
+                        signatureItemPhone.html(item.Phone);
+                        $("</br>").insertAfter(signatureItemPhone);
+                    }
 
                     // Social Links
                     if (item.Facebook) {
                         var signatureSocialFacebook = $('.facebook', signatureItem);
                         signatureSocialFacebook.attr("href", "https://www.facebook.com/" + item.Facebook);
-                        signatureSocialFacebook.removeClass("d-none");
+                        signatureSocialFacebook.show();
                     };
                     if (item.Twitter) {
                         var signatureSocialTwitter = $('.twitter', signatureItem);
                         signatureSocialTwitter.attr("href", "https://www.twitter.com/" + item.Twitter);
-                        signatureSocialTwitter.removeClass("d-none");
+                        signatureSocialTwitter.show();
                     }
                     if (item.LinkedIn) {
                         var signatureSocialLinkedIn = $('.linkedin', signatureItem);
                         signatureSocialLinkedIn.attr("href", "http://www.linkedin.com/in/" + item.LinkedIn);
-                        signatureSocialLinkedIn.removeClass("d-none");
+                        signatureSocialLinkedIn.show();
+                    }
+                    if (item.Email) {
+                        var signatureSocialEmail = $('.socialEmail', signatureItem);
+                        signatureSocialEmail.attr("href", "mailto:" + item.Email);
+                        signatureSocialEmail.show();
                     }
 
-                    var signatureSocialEmail = $('.socialEmail', signatureItem);
-                    signatureSocialEmail.attr("href", "mailto:" + item.Email);
-
                     // Append data to signature item
-                    $('#signatureList').append(signatureItem).addClass("d-none");
-                    $('#signatureList').slideDown().removeClass("d-none");
+                    $('#signatureList').append(signatureItem).hide();
+                    $('#signatureList').slideDown().show();
 
                     // Update button to warning and detach signature list
                     $("#generate").removeClass('btn-primary').addClass('btn-success disabled').html('<i class="fas fa-check-circle"></i> Success!');
@@ -86,11 +94,11 @@ $(document).ready(function () {
     // Reset Button
     $("#reset").click(function () {
         $('#signatureList li').slideUp();
-            setTimeout(function() { 
-                $('#signatureList li').detach()
-            }, 500);
+        setTimeout(function () {
+            $('#signatureList li').detach()
+        }, 500);
         $("#generate").removeClass('btn-success btn-danger disabled').addClass('btn-primary').html('<i class="fas fa-cube"></i> Generate');
-        
+
         // Hide reset button
         $("#reset").hide();
     });
