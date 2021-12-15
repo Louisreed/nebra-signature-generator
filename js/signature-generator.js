@@ -47,7 +47,7 @@ $(document).ready(function () {
 
                     if (item.Phone) {
                         var signatureItemPhone = $('.phone', signatureItem);
-                        signatureItemPhone.attr("href", "tel::" + item.Phone);
+                        signatureItemPhone.attr("href", "tel:" + item.Phone);
                         signatureItemPhone.html(item.Phone);
                         $("</br>").insertAfter(signatureItemPhone);
                     }
