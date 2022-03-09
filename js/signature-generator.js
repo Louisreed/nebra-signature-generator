@@ -10,7 +10,7 @@ $(document).ready(function () {
         $("#reset").show();
 
         // Google Sheets URL
-        url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTax-As-VlOK5SqpPCMU6w0-LzUn9i595Cl2f1QykJ6EM2OUMxAVAaaJ2Il8cuOFkGwfznff35Qvb-r/pub?output=csv';
+        url = 'signature-data.csv';
 
         // Render the email signature templates from CSV file
         $.ajax({
